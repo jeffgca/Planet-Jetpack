@@ -1,0 +1,5 @@
+*.pyc
+jetpack/cache*
+*.tmplc
+jetpack/output/*.xml
+jetpack/output/*.html
