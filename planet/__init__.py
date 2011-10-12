@@ -647,8 +647,9 @@ class Channel(cache.CachedInfo):
         if self.url_etag is not None:
             log.debug("E-Tag: %s", self.url_etag)
         if self.url_modified is not None:
-            log.debug("Last Modified: %s",
-                      time.strftime(TIMEFMT_ISO, self.url_modified))
+            #log.debug("Last Modified: %s",time.strftime(TIMEFMT_ISO, self.url_modified))
+
+            log.debug("Last Modified: %s", self.url_modified)
 
         self.update_info(info.feed)
         self.update_entries(info.entries)
