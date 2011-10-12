@@ -1,0 +1,1943 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DBEnv &mdash; PyBSDDB Documentation</title>
+    <link rel="stylesheet" href="static/default.css" type="text/css">
+    <link rel="stylesheet" href="static/pygments.css" type="text/css">
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:   '',
+        VERSION:    '5.2.0'
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/interface.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="contents" title="Global table of contents" href="contents.html">
+    <link rel="index" title="Global index" href="genindex.html">
+    <link rel="search" title="Search" href="search.html">
+    <link rel="top" title="PyBSDDB Documentation" href="index.html">
+    <link rel="next" title="DB" href="db.html">
+    <link rel="prev" title="Berkeley DB 4.x/5.x Python Extension Package" href="introduction.html">
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px"><a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right"><a href="modindex.html" title="Global Module Index" accesskey="M">modules</a> |</li>
+          <li class="right"><a href="db.html" title="DB" accesskey="N">next</a> |</li>
+          <li class="right"><a href="introduction.html" title="Berkeley DB 4.x/5.x Python Extension Package" accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyBSDDB v5.2.0 documentation</a> &raquo;</li>
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section">
+<h1 id="dbenv">DBEnv<a class="headerlink" href="#dbenv" title="Permalink to this headline">¶</a></h1>
+<p>Read <a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/programmer_reference/index.html">Oracle documentation</a>
+for better understanding.</p>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/env.html">More info...</a></p>
+<div class="section">
+<h2 id="dbenv-attributes">DBEnv Attributes<a class="headerlink" href="#dbenv-attributes" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="DBEnv">
+<!--#DBEnv#--><tt class="descname">DBEnv</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#DBEnv" title="Permalink to this definition">¶</a></dt>
+<dd>database home directory (read-only)</dd></dl>
+
+</div>
+<div class="section">
+<h2 id="dbenv-methods">DBEnv Methods<a class="headerlink" href="#dbenv-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<tt class="descname">DBEnv</tt><big>(</big><em>flags=0</em><big>)</big></dt>
+<dd>Constructor.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envcreate.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_rpc_server">
+<!--#set_rpc_server#--><tt class="descname">set_rpc_server</tt><big>(</big><em>host</em>, <em>cl_timeout=0</em>, <em>sv_timeout=0</em><big>)</big><a class="headerlink" href="#set_rpc_server" title="Permalink to this definition">¶</a></dt>
+<dd>Establishes a connection for this dbenv to a RPC server.
+This function is not available if linked to Berkeley DB 4.8 or up.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_rpc_server.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="close">
+<!--#close#--><tt class="descname">close</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#close" title="Permalink to this definition">¶</a></dt>
+<dd>Close the database environment, freeing resources.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envclose.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="open">
+<!--#open#--><tt class="descname">open</tt><big>(</big><em>homedir</em>, <em>flags=0</em>, <em>mode=0660</em><big>)</big><a class="headerlink" href="#open" title="Permalink to this definition">¶</a></dt>
+<dd>Prepare the database environment for use.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envopen.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_cursor">
+<!--#log_cursor#--><tt class="descname">log_cursor</tt><big>(</big><big>)</big><a class="headerlink" href="#log_cursor" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a created log cursor.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/logcursor.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="memp_stat">
+<!--#memp_stat#--><tt class="descname">memp_stat</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#memp_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the memory pool (that is, the buffer cache) subsystem
+statistics.</p>
+<p>The returning value is a tuple. The first element is a dictionary
+with the general stats. The second element is another dictionary,
+keyed by filename, and the values are the stats for each file.</p>
+<p>The first dictionary contains these data:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>gbytes</td>
+<td>Gigabytes of cache (total cache size is
+st_gbytes + st_bytes).</td>
+</tr>
+<tr><td>bytes</td>
+<td>Bytes of cache (total cache size is
+st_gbytes + st_bytes).</td>
+</tr>
+<tr><td>ncache</td>
+<td>Number of caches.</td>
+</tr>
+<tr><td>max_ncache</td>
+<td>Maximum number of caches, as configured
+with the DB_ENV-&gt;set_cache_max() method.</td>
+</tr>
+<tr><td>regsize</td>
+<td>Individual cache size, in bytes.</td>
+</tr>
+<tr><td>mmapsize</td>
+<td>Maximum memory-mapped file size.</td>
+</tr>
+<tr><td>maxopenfd</td>
+<td>Maximum open file descriptors.</td>
+</tr>
+<tr><td>maxwrite</td>
+<td>Maximum sequential buffer writes.</td>
+</tr>
+<tr><td>maxwrite_sleep</td>
+<td>Microseconds to pause after writing maximum
+sequential buffers.</td>
+</tr>
+<tr><td>map</td>
+<td>Requested pages mapped into the process&#8217;
+address space (there is no available
+information about whether or not this
+request caused disk I/O, although examining
+the application page fault rate may be
+helpful).</td>
+</tr>
+<tr><td>cache_hit</td>
+<td>Requested pages found in the cache.</td>
+</tr>
+<tr><td>cache_miss</td>
+<td>Requested pages not found in the cache.</td>
+</tr>
+<tr><td>page_create</td>
+<td>Pages created in the cache.</td>
+</tr>
+<tr><td>page_in</td>
+<td>Pages read into the cache.</td>
+</tr>
+<tr><td>page_out</td>
+<td>Pages written from the cache to the backing
+file.</td>
+</tr>
+<tr><td>ro_evict</td>
+<td>Clean pages forced from the cache.</td>
+</tr>
+<tr><td>rw_evict</td>
+<td>Dirty pages forced from the cache.</td>
+</tr>
+<tr><td>page_trickle</td>
+<td>Dirty pages written using the
+DB_ENV-&gt;memp_trickle() method.</td>
+</tr>
+<tr><td>pages</td>
+<td>Pages in the cache.</td>
+</tr>
+<tr><td>page_clean</td>
+<td>Clean pages currently in the cache.</td>
+</tr>
+<tr><td>page_dirty</td>
+<td>Dirty pages currently in the cache.</td>
+</tr>
+<tr><td>hash_buckets</td>
+<td>Number of hash buckets in buffer hash
+table.</td>
+</tr>
+<tr><td>hash_searches</td>
+<td>Total number of buffer hash table lookups.</td>
+</tr>
+<tr><td>hash_longest</td>
+<td>Longest chain ever encountered in buffer
+hash table lookups.</td>
+</tr>
+<tr><td>hash_examined</td>
+<td>Total number of hash elements traversed
+during hash table lookups.</td>
+</tr>
+<tr><td>hash_nowait</td>
+<td>Number of times that a thread of control
+was able to obtain a hash bucket lock
+without waiting.</td>
+</tr>
+<tr><td>hash_wait</td>
+<td>Number of times that a thread of control
+was forced to wait before obtaining a hash
+bucket lock.</td>
+</tr>
+<tr><td>hash_max_nowait</td>
+<td>The number of times a thread of control was
+able to obtain the hash bucket lock without
+waiting on the bucket which had the maximum
+number of times that a thread of control
+needed to wait.</td>
+</tr>
+<tr><td>hash_max_wait</td>
+<td>Maximum number of times any hash bucket
+lock was waited for by a thread of control.</td>
+</tr>
+<tr><td>region_wait</td>
+<td>Number of times that a thread of control
+was forced to wait before obtaining a cache
+region mutex.</td>
+</tr>
+<tr><td>region_nowait</td>
+<td>Number of times that a thread of control
+was able to obtain a cache region mutex
+without waiting.</td>
+</tr>
+<tr><td>mvcc_frozen</td>
+<td>Number of buffers frozen.</td>
+</tr>
+<tr><td>mvcc_thawed</td>
+<td>Number of buffers thawed.</td>
+</tr>
+<tr><td>mvcc_freed</td>
+<td>Number of frozen buffers freed.</td>
+</tr>
+<tr><td>alloc</td>
+<td>Number of page allocations.</td>
+</tr>
+<tr><td>alloc_buckets</td>
+<td>Number of hash buckets checked during
+allocation.</td>
+</tr>
+<tr><td>alloc_max_buckets</td>
+<td>Maximum number of hash buckets checked
+during an allocation.</td>
+</tr>
+<tr><td>alloc_pages</td>
+<td>Number of pages checked during allocation.</td>
+</tr>
+<tr><td>alloc_max_pages</td>
+<td>Maximum number of pages checked during an
+allocation.</td>
+</tr>
+<tr><td>io_wait</td>
+<td>Number of operations blocked waiting for
+I/O to complete.</td>
+</tr>
+<tr><td>sync_interrupted</td>
+<td>Number of mpool sync operations
+interrupted.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>The second dictionary contains these data:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>pagesize</td>
+<td>Page size in bytes.</td>
+</tr>
+<tr><td>cache_hit</td>
+<td>Requested pages found in the cache.</td>
+</tr>
+<tr><td>cache_miss</td>
+<td>Requested pages not found in the cache.</td>
+</tr>
+<tr><td>map</td>
+<td>Requested pages mapped into the process&#8217;
+address space.</td>
+</tr>
+<tr><td>page_create</td>
+<td>Pages created in the cache.</td>
+</tr>
+<tr><td>page_in</td>
+<td>Pages read into the cache.</td>
+</tr>
+<tr><td>page_out</td>
+<td>Pages written from the cache to the backing
+file.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mempstat.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="memp_stat_print">
+<!--#memp_stat_print#--><tt class="descname">memp_stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#memp_stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays cache subsystem statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mempstat_print.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="memp_sync">
+<!--#memp_sync#--><tt class="descname">memp_sync</tt><big>(</big><em>lsn=None</em><big>)</big><a class="headerlink" href="#memp_sync" title="Permalink to this definition">¶</a></dt>
+<dd>Flushes modified pages in the cache to their backing files. If
+provided, lsn is a tuple: (file, offset).
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mempsync.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="memp_trickle">
+<!--#memp_trickle#--><tt class="descname">memp_trickle</tt><big>(</big><em>percent</em><big>)</big><a class="headerlink" href="#memp_trickle" title="Permalink to this definition">¶</a></dt>
+<dd>Ensures that a specified percent of the pages in the cache are clean,
+by writing dirty pages to their backing files.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/memptrickle.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="remove">
+<!--#remove#--><tt class="descname">remove</tt><big>(</big><em>homedir</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#remove" title="Permalink to this definition">¶</a></dt>
+<dd>Remove a database environment.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envremove.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="dbremove">
+<!--#dbremove#--><tt class="descname">dbremove</tt><big>(</big><em>file</em>, <em>database=None</em>, <em>txn=None</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#dbremove" title="Permalink to this definition">¶</a></dt>
+<dd>Removes the database specified by the file and database parameters.
+If no database is specified, the underlying file represented by file
+is removed, incidentally removing all of the databases it contained.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envdbremove.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="dbrename">
+<!--#dbrename#--><tt class="descname">dbrename</tt><big>(</big><em>file</em>, <em>database=None</em>, <em>newname</em>, <em>txn=None</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#dbrename" title="Permalink to this definition">¶</a></dt>
+<dd>Renames the database specified by the file and database parameters to
+newname. If no database is specified, the underlying file represented
+by file is renamed, incidentally renaming all of the databases it
+contained.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envdbrename.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="fileid_reset">
+<!--#fileid_reset#--><tt class="descname">fileid_reset</tt><big>(</big><em>file</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#fileid_reset" title="Permalink to this definition">¶</a></dt>
+<dd>All databases contain an ID string used to identify the database in
+the database environment cache. If a physical database file is
+copied, and used in the same environment as another file with the
+same ID strings, corruption can occur. The DB_ENV-&gt;fileid_reset
+method creates new ID strings for all of the databases in the
+physical file.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envfileid_reset.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_thread_count">
+<!--#get_thread_count#--><tt class="descname">get_thread_count</tt><big>(</big><big>)</big><a class="headerlink" href="#get_thread_count" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the thread count as set by the DB_ENV-&gt;set_thread_count()
+method.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_thread_count.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_thread_count">
+<!--#set_thread_count#--><tt class="descname">set_thread_count</tt><big>(</big><em>count</em><big>)</big><a class="headerlink" href="#set_thread_count" title="Permalink to this definition">¶</a></dt>
+<dd>Declare an approximate number of threads in the database environment.
+The DB_ENV-&gt;set_thread_count() method must be called prior to opening
+the database environment if the DB_ENV-&gt;failchk() method will be
+used. The DB_ENV-&gt;set_thread_count() method does not set the maximum
+number of threads but is used to determine memory sizing and the
+thread control block reclamation policy.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_thread_count.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_encrypt">
+<!--#set_encrypt#--><tt class="descname">set_encrypt</tt><big>(</big><em>passwd</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#set_encrypt" title="Permalink to this definition">¶</a></dt>
+<dd>Set the password used by the Berkeley DB library to perform
+encryption and decryption.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_encrypt.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_encrypt_flags">
+<!--#get_encrypt_flags#--><tt class="descname">get_encrypt_flags</tt><big>(</big><big>)</big><a class="headerlink" href="#get_encrypt_flags" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the encryption flags.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_encrypt_flags.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_intermediate_dir_mode">
+<!--#get_intermediate_dir_mode#--><tt class="descname">get_intermediate_dir_mode</tt><big>(</big><big>)</big><a class="headerlink" href="#get_intermediate_dir_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the intermediate directory permissions.</p>
+<p>Intermediate directories are directories needed for recovery.
+Normally, Berkeley DB does not create these directories and will do
+so only if the DB_ENV-&gt;set_intermediate_dir_mode() method is called.</p>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_intermediate_dir_mode.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="set_intermediate_dir_mode">
+<!--#set_intermediate_dir_mode#--><tt class="descname">set_intermediate_dir_mode</tt><big>(</big><em>mode</em><big>)</big><a class="headerlink" href="#set_intermediate_dir_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>By default, Berkeley DB does not create intermediate directories
+needed for recovery, that is, if the file /a/b/c/mydatabase is being
+recovered, and the directory path b/c does not exist, recovery will
+fail. This default behavior is because Berkeley DB does not know what
+permissions are appropriate for intermediate directory creation, and
+creating the directory might result in a security problem.</p>
+<p>The DB_ENV-&gt;set_intermediate_dir_mode() method causes Berkeley DB to
+create any intermediate directories needed during recovery, using the
+specified permissions.</p>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_intermediate_dir_mode.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_timeout">
+<!--#get_timeout#--><tt class="descname">get_timeout</tt><big>(</big><em>flags</em><big>)</big><a class="headerlink" href="#get_timeout" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a timeout value, in microseconds.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_timeout.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_timeout">
+<!--#set_timeout#--><tt class="descname">set_timeout</tt><big>(</big><em>timeout</em>, <em>flags</em><big>)</big><a class="headerlink" href="#set_timeout" title="Permalink to this definition">¶</a></dt>
+<dd>Sets timeout values for locks or transactions in the database
+environment.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_timeout.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_mp_max_openfd">
+<!--#get_mp_max_openfd#--><tt class="descname">get_mp_max_openfd</tt><big>(</big><big>)</big><a class="headerlink" href="#get_mp_max_openfd" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the maximum number of file descriptors the library will open
+concurrently when flushing dirty pages from the cache.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mempget_mp_max_openfd.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_mp_max_openfd">
+<!--#set_mp_max_openfd#--><tt class="descname">set_mp_max_openfd</tt><big>(</big><em>max_open_fd</em><big>)</big><a class="headerlink" href="#set_mp_max_openfd" title="Permalink to this definition">¶</a></dt>
+<dd>Limits the number of file descriptors the library will open
+concurrently when flushing dirty pages from the cache.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mempset_mp_max_openfd.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_mp_max_write">
+<!--#get_mp_max_write#--><tt class="descname">get_mp_max_write</tt><big>(</big><big>)</big><a class="headerlink" href="#get_mp_max_write" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a tuple with the current maximum number of sequential write
+operations and microseconds to pause that the library can schedule
+when flushing dirty pages from the cache.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mempget_mp_max_write.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_mp_max_write">
+<!--#set_mp_max_write#--><tt class="descname">set_mp_max_write</tt><big>(</big><em>maxwrite</em>, <em>maxwrite_sleep</em><big>)</big><a class="headerlink" href="#set_mp_max_write" title="Permalink to this definition">¶</a></dt>
+<dd>Limits the number of sequential write operations scheduled by the
+library when flushing dirty pages from the cache.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mempset_mp_max_write.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_shm_key">
+<!--#set_shm_key#--><tt class="descname">set_shm_key</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#set_shm_key" title="Permalink to this definition">¶</a></dt>
+<dd>Specify a base segment ID for Berkeley DB environment shared memory
+regions created in system memory on VxWorks or systems supporting
+X/Open-style shared memory interfaces; for example, UNIX systems
+supporting shmget(2) and related System V IPC interfaces.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_shm_key.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_shm_key">
+<!--#get_shm_key#--><tt class="descname">get_shm_key</tt><big>(</big><big>)</big><a class="headerlink" href="#get_shm_key" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the base segment ID.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_shm_key.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_cache_max">
+<!--#set_cache_max#--><tt class="descname">set_cache_max</tt><big>(</big><em>gbytes</em>, <em>bytes</em><big>)</big><a class="headerlink" href="#set_cache_max" title="Permalink to this definition">¶</a></dt>
+<dd>Sets the maximum cache size, in bytes. The specified size is rounded
+to the nearest multiple of the cache region size, which is the
+initial cache size divided by the number of regions specified to the
+DB_ENV-&gt;set_cachesize() method. If no value is specified, it defaults
+to the initial cache size.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_cache_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_cache_max">
+<!--#get_cache_max#--><tt class="descname">get_cache_max</tt><big>(</big><big>)</big><a class="headerlink" href="#get_cache_max" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the maximum size of the cache as set using the
+DB_ENV-&gt;set_cache_max() method.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_cache_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_cachesize">
+<!--#set_cachesize#--><tt class="descname">set_cachesize</tt><big>(</big><em>gbytes</em>, <em>bytes</em>, <em>ncache=0</em><big>)</big><a class="headerlink" href="#set_cachesize" title="Permalink to this definition">¶</a></dt>
+<dd>Set the size of the shared memory buffer pool.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_cachesize.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_cachesize">
+<!--#get_cachesize#--><tt class="descname">get_cachesize</tt><big>(</big><big>)</big><a class="headerlink" href="#get_cachesize" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a tuple with the current size and composition of the cache.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_cachesize.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_data_dir">
+<!--#set_data_dir#--><tt class="descname">set_data_dir</tt><big>(</big><em>dir</em><big>)</big><a class="headerlink" href="#set_data_dir" title="Permalink to this definition">¶</a></dt>
+<dd>Set the environment data directory. You can call this function
+multiple times, adding new directories.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_data_dir.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_data_dirs">
+<!--#get_data_dirs#--><tt class="descname">get_data_dirs</tt><big>(</big><big>)</big><a class="headerlink" href="#get_data_dirs" title="Permalink to this definition">¶</a></dt>
+<dd>Return a tuple with the directories.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_data_dirs.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_flags">
+<!--#get_flags#--><tt class="descname">get_flags</tt><big>(</big><big>)</big><a class="headerlink" href="#get_flags" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the configuration flags set for a DB_ENV handle.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_flags.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_flags">
+<!--#set_flags#--><tt class="descname">set_flags</tt><big>(</big><em>flags</em>, <em>onoff</em><big>)</big><a class="headerlink" href="#set_flags" title="Permalink to this definition">¶</a></dt>
+<dd>Set additional flags for the DBEnv. The onoff parameter specifes if
+the flag is set or cleared.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_flags.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_tmp_dir">
+<!--#set_tmp_dir#--><tt class="descname">set_tmp_dir</tt><big>(</big><em>dir</em><big>)</big><a class="headerlink" href="#set_tmp_dir" title="Permalink to this definition">¶</a></dt>
+<dd>Set the directory to be used for temporary files.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_tmp_dir.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_tmp_dir">
+<!--#get_tmp_dir#--><tt class="descname">get_tmp_dir</tt><big>(</big><big>)</big><a class="headerlink" href="#get_tmp_dir" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the database environment temporary file directory.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_tmp_dir.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_get_returns_none">
+<!--#set_get_returns_none#--><tt class="descname">set_get_returns_none</tt><big>(</big><em>flag</em><big>)</big><a class="headerlink" href="#set_get_returns_none" title="Permalink to this definition">¶</a></dt>
+<dd><p>By default when DB.get or DBCursor.get, get_both, first, last, next
+or prev encounter a DB_NOTFOUND error they return None instead of
+raising DBNotFoundError. This behaviour emulates Python dictionaries
+and is convenient for looping.</p>
+<p>You can use this method to toggle that behaviour for all of the
+aformentioned methods or extend it to also apply to the DBCursor.set,
+set_both, set_range, and set_recno methods. Supported values of
+flag:</p>
+<ul class="simple">
+<li><strong>0</strong> all DB and DBCursor get and set methods will raise a
+DBNotFoundError rather than returning None.</li>
+<li><strong>1</strong> <em>Default in module version &lt;4.2.4</em>  The DB.get and
+DBCursor.get, get_both, first, last, next and prev methods return
+None.</li>
+<li><strong>2</strong> <em>Default in module version &gt;=4.2.4</em> Extends the behaviour of
+<strong>1</strong> to the DBCursor set, set_both, set_range and set_recno
+methods.</li>
+</ul>
+<p>The default of returning None makes it easy to do things like this
+without having to catch DBNotFoundError (KeyError):</p>
+<div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">doSomething</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+<p>or this:</p>
+<div class="highlight"><pre><span class="n">rec</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">rec</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">rec</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</pre></div>
+<p>Making the cursor set methods return None is useful in order to do
+this:</p>
+<div class="highlight"><pre><span class="n">rec</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">rec</span><span class="p">:</span>
+    <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">rec</span>
+    <span class="n">doSomething</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</pre></div>
+<p>The downside to this it that it is inconsistent with the rest of the
+package and noticeably diverges from the Oracle Berkeley DB API. If
+you prefer to have the get and set methods raise an exception when a
+key is not found, use this method to tell them to do so.</p>
+<p>Calling this method on a DBEnv object will set the default for all
+DB&#8217;s later created within that environment. Calling it on a DB
+object sets the behaviour for that DB only.</p>
+<p>The previous setting is returned.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="set_private">
+<!--#set_private#--><tt class="descname">set_private</tt><big>(</big><em>object</em><big>)</big><a class="headerlink" href="#set_private" title="Permalink to this definition">¶</a></dt>
+<dd>Link an object to the DBEnv object. This allows to pass around an
+arbitrary object. For instance, for callback context.</dd></dl>
+
+<dl class="function">
+<dt id="get_private">
+<!--#get_private#--><tt class="descname">get_private</tt><big>(</big><big>)</big><a class="headerlink" href="#get_private" title="Permalink to this definition">¶</a></dt>
+<dd>Give the object linked to the DBEnv.</dd></dl>
+
+<dl class="function">
+<dt id="get_open_flags">
+<!--#get_open_flags#--><tt class="descname">get_open_flags</tt><big>(</big><big>)</big><a class="headerlink" href="#get_open_flags" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the current open method flags. That is, this method returns
+the flags that were specified when DB_ENV-&gt;open() was called.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_open_flags.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lg_filemode">
+<!--#get_lg_filemode#--><tt class="descname">get_lg_filemode</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lg_filemode" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the log file mode.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lg_filemode.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lg_filemode">
+<!--#set_lg_filemode#--><tt class="descname">set_lg_filemode</tt><big>(</big><em>filemode</em><big>)</big><a class="headerlink" href="#set_lg_filemode" title="Permalink to this definition">¶</a></dt>
+<dd>Set the absolute file mode for created log files.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lg_filemode.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lg_bsize">
+<!--#get_lg_bsize#--><tt class="descname">get_lg_bsize</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lg_bsize" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the size of the log buffer, in bytes.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lg_bsize.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lg_bsize">
+<!--#set_lg_bsize#--><tt class="descname">set_lg_bsize</tt><big>(</big><em>size</em><big>)</big><a class="headerlink" href="#set_lg_bsize" title="Permalink to this definition">¶</a></dt>
+<dd>Set the size of the in-memory log buffer, in bytes.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lg_bsize.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lg_dir">
+<!--#get_lg_dir#--><tt class="descname">get_lg_dir</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lg_dir" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the log directory, which is the location for logging files.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lg_dir.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lg_dir">
+<!--#set_lg_dir#--><tt class="descname">set_lg_dir</tt><big>(</big><em>dir</em><big>)</big><a class="headerlink" href="#set_lg_dir" title="Permalink to this definition">¶</a></dt>
+<dd>The path of a directory to be used as the location of logging files.
+Log files created by the Log Manager subsystem will be created in
+this directory.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lg_dir.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lg_max">
+<!--#set_lg_max#--><tt class="descname">set_lg_max</tt><big>(</big><em>size</em><big>)</big><a class="headerlink" href="#set_lg_max" title="Permalink to this definition">¶</a></dt>
+<dd>Set the maximum size of a single file in the log, in bytes.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lg_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lg_max">
+<!--#get_lg_max#--><tt class="descname">get_lg_max</tt><big>(</big><em>size</em><big>)</big><a class="headerlink" href="#get_lg_max" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the maximum log file size.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lg_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lg_regionmax">
+<!--#get_lg_regionmax#--><tt class="descname">get_lg_regionmax</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lg_regionmax" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the size of the underlying logging subsystem region.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lg_regionmax.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lg_regionmax">
+<!--#set_lg_regionmax#--><tt class="descname">set_lg_regionmax</tt><big>(</big><em>size</em><big>)</big><a class="headerlink" href="#set_lg_regionmax" title="Permalink to this definition">¶</a></dt>
+<dd>Set the maximum size of a single region in the log, in bytes.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lg_regionmax.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lk_partitions">
+<!--#get_lk_partitions#--><tt class="descname">get_lk_partitions</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lk_partitions" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the number of lock table partitions used in the Berkeley DB
+environment.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lk_partitions.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lk_partitions">
+<!--#set_lk_partitions#--><tt class="descname">set_lk_partitions</tt><big>(</big><em>partitions</em><big>)</big><a class="headerlink" href="#set_lk_partitions" title="Permalink to this definition">¶</a></dt>
+<dd>Set the number of lock table partitions in the Berkeley DB
+environment.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lk_partitions.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lk_detect">
+<!--#get_lk_detect#--><tt class="descname">get_lk_detect</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lk_detect" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the deadlock detector configuration.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lk_detect.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lk_detect">
+<!--#set_lk_detect#--><tt class="descname">set_lk_detect</tt><big>(</big><em>mode</em><big>)</big><a class="headerlink" href="#set_lk_detect" title="Permalink to this definition">¶</a></dt>
+<dd>Set the automatic deadlock detection mode.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lk_detect.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lk_max">
+<!--#set_lk_max#--><tt class="descname">set_lk_max</tt><big>(</big><em>max</em><big>)</big><a class="headerlink" href="#set_lk_max" title="Permalink to this definition">¶</a></dt>
+<dd>Set the maximum number of locks. (This method is deprecated.)
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lk_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lk_max_locks">
+<!--#get_lk_max_locks#--><tt class="descname">get_lk_max_locks</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lk_max_locks" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the maximum number of potential locks.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lk_max_locks.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lk_max_locks">
+<!--#set_lk_max_locks#--><tt class="descname">set_lk_max_locks</tt><big>(</big><em>max</em><big>)</big><a class="headerlink" href="#set_lk_max_locks" title="Permalink to this definition">¶</a></dt>
+<dd>Set the maximum number of locks supported by the Berkeley DB lock
+subsystem.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lk_max_locks.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lk_max_lockers">
+<!--#get_lk_max_lockers#--><tt class="descname">get_lk_max_lockers</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lk_max_lockers" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the maximum number of potential lockers.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lk_max_lockers.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lk_max_lockers">
+<!--#set_lk_max_lockers#--><tt class="descname">set_lk_max_lockers</tt><big>(</big><em>max</em><big>)</big><a class="headerlink" href="#set_lk_max_lockers" title="Permalink to this definition">¶</a></dt>
+<dd>Set the maximum number of simultaneous locking entities supported by
+the Berkeley DB lock subsystem.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lk_max_lockers.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_lk_max_objects">
+<!--#get_lk_max_objects#--><tt class="descname">get_lk_max_objects</tt><big>(</big><big>)</big><a class="headerlink" href="#get_lk_max_objects" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the maximum number of locked objects.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_lk_max_objects.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_lk_max_objects">
+<!--#set_lk_max_objects#--><tt class="descname">set_lk_max_objects</tt><big>(</big><em>max</em><big>)</big><a class="headerlink" href="#set_lk_max_objects" title="Permalink to this definition">¶</a></dt>
+<dd>Set the maximum number of simultaneously locked objects supported by
+the Berkeley DB lock subsystem.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_lk_max_lockers.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_mp_mmapsize">
+<!--#get_mp_mmapsize#--><tt class="descname">get_mp_mmapsize</tt><big>(</big><big>)</big><a class="headerlink" href="#get_mp_mmapsize" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the the maximum file size, in bytes, for a file to be mapped
+into the process address space.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_mp_mmapsize.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_mp_mmapsize">
+<!--#set_mp_mmapsize#--><tt class="descname">set_mp_mmapsize</tt><big>(</big><em>size</em><big>)</big><a class="headerlink" href="#set_mp_mmapsize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Files that are opened read-only in the memory pool (and that satisfy
+a few other criteria) are, by default, mapped into the process
+address space instead of being copied into the local cache. This can
+result in better-than-usual performance, as available virtual memory
+is normally much larger than the local cache, and page faults are
+faster than page copying on many systems. However, in the presence
+of limited virtual memory it can cause resource starvation, and in
+the presence of large databases, it can result in immense process
+sizes.</p>
+<p>This method sets the maximum file size, in bytes, for a file to be
+mapped into the process address space. If no value is specified, it
+defaults to 10MB.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_mp_mmapsize.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stat_print">
+<!--#stat_print#--><tt class="descname">stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays the default subsystem statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envstat.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_file">
+<!--#log_file#--><tt class="descname">log_file</tt><big>(</big><em>lsn</em><big>)</big><a class="headerlink" href="#log_file" title="Permalink to this definition">¶</a></dt>
+<dd>Maps lsn to filenames, returning the name of the file
+containing the named record.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/logfile.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_printf">
+<!--#log_printf#--><tt class="descname">log_printf</tt><big>(</big><em>string</em>, <em>txn=None</em><big>)</big><a class="headerlink" href="#log_printf" title="Permalink to this definition">¶</a></dt>
+<dd>Appends an informational message to the Berkeley DB database
+environment log files.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/logprintf.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_archive">
+<!--#log_archive#--><tt class="descname">log_archive</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#log_archive" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a list of log or database file names. By default,
+log_archive returns the names of all of the log files that are no
+longer in use (e.g., no longer involved in active transactions), and
+that may safely be archived for catastrophic recovery and then
+removed from the system.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/logarchive.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_flush">
+<!--#log_flush#--><tt class="descname">log_flush</tt><big>(</big><big>)</big><a class="headerlink" href="#log_flush" title="Permalink to this definition">¶</a></dt>
+<dd>Force log records to disk. Useful if the environment, database or
+transactions are used as ACI, instead of ACID. For example, if the
+environment is opened as DB_TXN_NOSYNC.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/logflush.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_get_config">
+<!--#log_get_config#--><tt class="descname">log_get_config</tt><big>(</big><em>which</em><big>)</big><a class="headerlink" href="#log_get_config" title="Permalink to this definition">¶</a></dt>
+<dd>Returns whether the specified which parameter is currently set or
+not. You can manage this value using the DB_ENV-&gt;log_set_config()
+method.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envlog_get_config.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_set_config">
+<!--#log_set_config#--><tt class="descname">log_set_config</tt><big>(</big><em>flags</em>, <em>onoff</em><big>)</big><a class="headerlink" href="#log_set_config" title="Permalink to this definition">¶</a></dt>
+<dd>Configures the Berkeley DB logging subsystem.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envlog_set_config.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="lock_detect">
+<!--#lock_detect#--><tt class="descname">lock_detect</tt><big>(</big><em>atype</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#lock_detect" title="Permalink to this definition">¶</a></dt>
+<dd>Run one iteration of the deadlock detector, returns the number of
+transactions aborted.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/lockdetect.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="lock_get">
+<!--#lock_get#--><tt class="descname">lock_get</tt><big>(</big><em>locker</em>, <em>obj</em>, <em>lock_mode</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#lock_get" title="Permalink to this definition">¶</a></dt>
+<dd>Acquires a lock and returns a handle to it as a DBLock object. The
+locker parameter is an integer representing the entity doing the
+locking, and obj is an object representing the item to be locked.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/lockget.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="lock_id">
+<!--#lock_id#--><tt class="descname">lock_id</tt><big>(</big><big>)</big><a class="headerlink" href="#lock_id" title="Permalink to this definition">¶</a></dt>
+<dd>Acquires a locker id, guaranteed to be unique across all threads and
+processes that have the DBEnv open.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/lockid.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="lock_id_free">
+<!--#lock_id_free#--><tt class="descname">lock_id_free</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#lock_id_free" title="Permalink to this definition">¶</a></dt>
+<dd>Frees a locker ID allocated by the &#8220;dbenv.lock_id()&#8221; method.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/lockid_free.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="lock_put">
+<!--#lock_put#--><tt class="descname">lock_put</tt><big>(</big><em>lock</em><big>)</big><a class="headerlink" href="#lock_put" title="Permalink to this definition">¶</a></dt>
+<dd>Release the lock.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/lockput.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="lock_stat">
+<!--#lock_stat#--><tt class="descname">lock_stat</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#lock_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of locking subsystem statistics with the
+following keys:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>id</td>
+<td>Last allocated lock ID.</td>
+</tr>
+<tr><td>cur_maxid</td>
+<td>The current maximum unused locker ID.</td>
+</tr>
+<tr><td>nmodes</td>
+<td>Number of lock modes.</td>
+</tr>
+<tr><td>maxlocks</td>
+<td>Maximum number of locks possible.</td>
+</tr>
+<tr><td>maxlockers</td>
+<td>Maximum number of lockers possible.</td>
+</tr>
+<tr><td>maxobjects</td>
+<td>Maximum number of objects possible.</td>
+</tr>
+<tr><td>nlocks</td>
+<td>Number of current locks.</td>
+</tr>
+<tr><td>maxnlocks</td>
+<td>Maximum number of locks at once.</td>
+</tr>
+<tr><td>nlockers</td>
+<td>Number of current lockers.</td>
+</tr>
+<tr><td>nobjects</td>
+<td>Number of current lock objects.</td>
+</tr>
+<tr><td>maxnobjects</td>
+<td>Maximum number of lock objects at once.</td>
+</tr>
+<tr><td>maxnlockers</td>
+<td>Maximum number of lockers at once.</td>
+</tr>
+<tr><td>nrequests</td>
+<td>Total number of locks requested.</td>
+</tr>
+<tr><td>nreleases</td>
+<td>Total number of locks released.</td>
+</tr>
+<tr><td>nupgrade</td>
+<td>Total number of locks upgraded.</td>
+</tr>
+<tr><td>ndowngrade</td>
+<td>Total number of locks downgraded.</td>
+</tr>
+<tr><td>lock_wait</td>
+<td>The number of lock requests not immediately
+available due to conflicts, for which the
+thread of control waited.</td>
+</tr>
+<tr><td>lock_nowait</td>
+<td>The number of lock requests not immediately
+available due to conflicts, for which the
+thread of control did not wait.</td>
+</tr>
+<tr><td>ndeadlocks</td>
+<td>Number of deadlocks.</td>
+</tr>
+<tr><td>locktimeout</td>
+<td>Lock timeout value.</td>
+</tr>
+<tr><td>nlocktimeouts</td>
+<td>The number of lock requests that have timed
+out.</td>
+</tr>
+<tr><td>txntimeout</td>
+<td>Transaction timeout value.</td>
+</tr>
+<tr><td>ntxntimeouts</td>
+<td>The number of transactions that have timed
+out. This value is also a component of
+ndeadlocks, the total number of deadlocks
+detected.</td>
+</tr>
+<tr><td>objs_wait</td>
+<td>The number of requests to allocate or
+deallocate an object for which the thread
+of control waited.</td>
+</tr>
+<tr><td>objs_nowait</td>
+<td>The number of requests to allocate or
+deallocate an object for which the thread
+of control did not wait.</td>
+</tr>
+<tr><td>lockers_wait</td>
+<td>The number of requests to allocate or
+deallocate a locker for which the thread of
+control waited.</td>
+</tr>
+<tr><td>lockers_nowait</td>
+<td>The number of requests to allocate or
+deallocate a locker for which the thread of
+control did not wait.</td>
+</tr>
+<tr><td>locks_wait</td>
+<td>The number of requests to allocate or
+deallocate a lock structure for which the
+thread of control waited.</td>
+</tr>
+<tr><td>locks_nowait</td>
+<td>The number of requests to allocate or
+deallocate a lock structure for which the
+thread of control did not wait.</td>
+</tr>
+<tr><td>hash_len</td>
+<td>Maximum length of a lock hash bucket.</td>
+</tr>
+<tr><td>regsize</td>
+<td>Size of the region.</td>
+</tr>
+<tr><td>region_wait</td>
+<td>Number of times a thread of control was
+forced to wait before obtaining the region
+lock.</td>
+</tr>
+<tr><td>region_nowait</td>
+<td>Number of times a thread of control was
+able to obtain the region lock  without
+waiting.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/lockstat.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lock_stat_print">
+<!--#lock_stat_print#--><tt class="descname">lock_stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#lock_stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays the locking subsystem statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/lockstat_print.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_tx_max">
+<!--#get_tx_max#--><tt class="descname">get_tx_max</tt><big>(</big><big>)</big><a class="headerlink" href="#get_tx_max" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the number of active transactions.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_tx_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_tx_max">
+<!--#set_tx_max#--><tt class="descname">set_tx_max</tt><big>(</big><em>max</em><big>)</big><a class="headerlink" href="#set_tx_max" title="Permalink to this definition">¶</a></dt>
+<dd>Set the maximum number of active transactions.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_tx_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_tx_timestamp">
+<!--#get_tx_timestamp#--><tt class="descname">get_tx_timestamp</tt><big>(</big><big>)</big><a class="headerlink" href="#get_tx_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the recovery timestamp.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_tx_timestamp.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_tx_timestamp">
+<!--#set_tx_timestamp#--><tt class="descname">set_tx_timestamp</tt><big>(</big><em>timestamp</em><big>)</big><a class="headerlink" href="#set_tx_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd>Recover to the time specified by timestamp rather than to the most
+current possible date.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_tx_timestamp.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="txn_begin">
+<!--#txn_begin#--><tt class="descname">txn_begin</tt><big>(</big><em>parent=None</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#txn_begin" title="Permalink to this definition">¶</a></dt>
+<dd>Creates and begins a new transaction. A DBTxn object is returned.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/txnbegin.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="txn_checkpoint">
+<!--#txn_checkpoint#--><tt class="descname">txn_checkpoint</tt><big>(</big><em>kbyte=0</em>, <em>min=0</em>, <em>flag=0</em><big>)</big><a class="headerlink" href="#txn_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd>Flushes the underlying memory pool, writes a checkpoint record to the
+log and then flushes the log.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/txncheckpoint.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="txn_stat">
+<!--#txn_stat#--><tt class="descname">txn_stat</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#txn_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of transaction statistics with the following
+keys:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>last_ckp</td>
+<td>The LSN of the last checkpoint.</td>
+</tr>
+<tr><td>time_ckp</td>
+<td>Time the last completed checkpoint finished
+(as the number of seconds since the Epoch,
+returned by the IEEE/ANSI Std 1003.1 POSIX
+time interface).</td>
+</tr>
+<tr><td>last_txnid</td>
+<td>Last transaction ID allocated.</td>
+</tr>
+<tr><td>maxtxns</td>
+<td>Max number of active transactions possible.</td>
+</tr>
+<tr><td>nactive</td>
+<td>Number of transactions currently active.</td>
+</tr>
+<tr><td>maxnactive</td>
+<td>Max number of active transactions at once.</td>
+</tr>
+<tr><td>nsnapshot</td>
+<td>The number of transactions on the snapshot
+list. These are transactions which modified
+a database opened with DB_MULTIVERSION, and
+which have committed or aborted, but the
+copies of pages they created are still in
+the cache.</td>
+</tr>
+<tr><td>maxnsnapshot</td>
+<td>The maximum number of transactions on the
+snapshot list at any one time.</td>
+</tr>
+<tr><td>nbegins</td>
+<td>Number of transactions that have begun.</td>
+</tr>
+<tr><td>naborts</td>
+<td>Number of transactions that have aborted.</td>
+</tr>
+<tr><td>ncommits</td>
+<td>Number of transactions that have committed.</td>
+</tr>
+<tr><td>nrestores</td>
+<td>Number of transactions that have been
+restored.</td>
+</tr>
+<tr><td>regsize</td>
+<td>Size of the region.</td>
+</tr>
+<tr><td>region_wait</td>
+<td>Number of times that a thread of control
+was forced to wait before obtaining the
+region lock.</td>
+</tr>
+<tr><td>region_nowait</td>
+<td>Number of times that a thread of control
+was able to obtain the region lock without
+waiting.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/txnstat.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="txn_stat_print">
+<!--#txn_stat_print#--><tt class="descname">txn_stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#txn_stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays the transaction subsystem statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/txnstat_print.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="lsn_reset">
+<!--#lsn_reset#--><tt class="descname">lsn_reset</tt><big>(</big><em>file=None</em>, <em>flags=0</em><big>)</big><a class="headerlink" href="#lsn_reset" title="Permalink to this definition">¶</a></dt>
+<dd>This method allows database files to be moved from one transactional
+database environment to another.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envlsn_reset.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="log_stat">
+<!--#log_stat#--><tt class="descname">log_stat</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#log_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of logging subsystem statistics with the
+following keys:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>magic</td>
+<td>The magic number that identifies a file as
+a log file.</td>
+</tr>
+<tr><td>version</td>
+<td>The version of the log file type.</td>
+</tr>
+<tr><td>mode</td>
+<td>The mode of any created log files.</td>
+</tr>
+<tr><td>lg_bsize</td>
+<td>The in-memory log record cache size.</td>
+</tr>
+<tr><td>lg_size</td>
+<td>The log file size.</td>
+</tr>
+<tr><td>record</td>
+<td>The number of records written to this log.</td>
+</tr>
+<tr><td>w_mbytes</td>
+<td>The number of megabytes written to this
+log.</td>
+</tr>
+<tr><td>w_bytes</td>
+<td>The number of bytes over and above w_mbytes
+written to this log.</td>
+</tr>
+<tr><td>wc_mbytes</td>
+<td>The number of megabytes written to this log
+since the last checkpoint.</td>
+</tr>
+<tr><td>wc_bytes</td>
+<td>The number of bytes over and above
+wc_mbytes written to this log since the
+last checkpoint.</td>
+</tr>
+<tr><td>wcount</td>
+<td>The number of times the log has been
+written to disk.</td>
+</tr>
+<tr><td>wcount_fill</td>
+<td>The number of times the log has been
+written to disk because the in-memory log
+record cache filled up.</td>
+</tr>
+<tr><td>rcount</td>
+<td>The number of times the log has been read
+from disk.</td>
+</tr>
+<tr><td>scount</td>
+<td>The number of times the log has been
+flushed to disk.</td>
+</tr>
+<tr><td>cur_file</td>
+<td>The current log file number.</td>
+</tr>
+<tr><td>cur_offset</td>
+<td>The byte offset in the current log file.</td>
+</tr>
+<tr><td>disk_file</td>
+<td>The log file number of the last record
+known to be on disk.</td>
+</tr>
+<tr><td>disk_offset</td>
+<td>The byte offset of the last record known to
+be on disk.</td>
+</tr>
+<tr><td>maxcommitperflush</td>
+<td>The maximum number of commits contained in
+a single log flush.</td>
+</tr>
+<tr><td>mincommitperflush</td>
+<td>The minimum number of commits contained in
+a single log flush that contained a commit.</td>
+</tr>
+<tr><td>regsize</td>
+<td>The size of the log region, in bytes.</td>
+</tr>
+<tr><td>region_wait</td>
+<td>The number of times that a thread of
+control was forced to wait before obtaining
+the log region mutex.</td>
+</tr>
+<tr><td>region_nowait</td>
+<td>The number of times that a thread of
+control was able to obtain the log region
+mutex without waiting.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/logstat.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="log_stat_print">
+<!--#log_stat_print#--><tt class="descname">log_stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#log_stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays the logging subsystem statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/logstat_print.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="txn_recover">
+<!--#txn_recover#--><tt class="descname">txn_recover</tt><big>(</big><big>)</big><a class="headerlink" href="#txn_recover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of tuples (GID, TXN) of transactions prepared but
+still unresolved. This is used while doing environment recovery in an
+application using distributed transactions.</p>
+<p>This method must be called only from a single thread at a time. It
+should be called after DBEnv recovery.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/txnrecover.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="set_verbose">
+<!--#set_verbose#--><tt class="descname">set_verbose</tt><big>(</big><em>which</em>, <em>onoff</em><big>)</big><a class="headerlink" href="#set_verbose" title="Permalink to this definition">¶</a></dt>
+<dd>Turns specific additional informational and debugging messages in the
+Berkeley DB message output on and off. To see the additional
+messages, verbose messages must also be configured for the
+application.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envset_verbose.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="get_verbose">
+<!--#get_verbose#--><tt class="descname">get_verbose</tt><big>(</big><em>which</em><big>)</big><a class="headerlink" href="#get_verbose" title="Permalink to this definition">¶</a></dt>
+<dd>Returns whether the specified <em>which</em> parameter is currently set or
+not.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envget_verbose.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="set_event_notify">
+<!--#set_event_notify#--><tt class="descname">set_event_notify</tt><big>(</big><em>eventFunc</em><big>)</big><a class="headerlink" href="#set_event_notify" title="Permalink to this definition">¶</a></dt>
+<dd>Configures a callback function which is called to notify the process
+of specific Berkeley DB events.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/envevent_notify.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_stat">
+<!--#mutex_stat#--><tt class="descname">mutex_stat</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#mutex_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of mutex subsystem statistics with the following
+keys:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>mutex_align</td>
+<td>The mutex alignment, in bytes.</td>
+</tr>
+<tr><td>mutex_tas_spins</td>
+<td>The number of times test-and-set mutexes
+will spin without blocking.</td>
+</tr>
+<tr><td>mutex_cnt</td>
+<td>The total number of mutexes configured.</td>
+</tr>
+<tr><td>mutex_free</td>
+<td>The number of mutexes currently available.</td>
+</tr>
+<tr><td>mutex_inuse</td>
+<td>The number of mutexes currently in use.</td>
+</tr>
+<tr><td>mutex_inuse_max</td>
+<td>The maximum number of mutexes ever in use.</td>
+</tr>
+<tr><td>regsize</td>
+<td>The size of the mutex region, in bytes.</td>
+</tr>
+<tr><td>region_wait</td>
+<td>The number of times that a thread of
+control was forced to wait before
+obtaining the mutex region mutex.</td>
+</tr>
+<tr><td>region_nowait</td>
+<td>The number of times that a thread of
+control was able to obtain the mutex
+region mutex without waiting.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexstat.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mutex_stat_print">
+<!--#mutex_stat_print#--><tt class="descname">mutex_stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#mutex_stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays the mutex subsystem statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexstat_print.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_set_max">
+<!--#mutex_set_max#--><tt class="descname">mutex_set_max</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#mutex_set_max" title="Permalink to this definition">¶</a></dt>
+<dd>Configure the total number of mutexes to allocate.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexset_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_get_max">
+<!--#mutex_get_max#--><tt class="descname">mutex_get_max</tt><big>(</big><big>)</big><a class="headerlink" href="#mutex_get_max" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the total number of mutexes allocated.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexget_max.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_set_increment">
+<!--#mutex_set_increment#--><tt class="descname">mutex_set_increment</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#mutex_set_increment" title="Permalink to this definition">¶</a></dt>
+<dd>Configure the number of additional mutexes to allocate.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexset_increment.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_get_increment">
+<!--#mutex_get_increment#--><tt class="descname">mutex_get_increment</tt><big>(</big><big>)</big><a class="headerlink" href="#mutex_get_increment" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the number of additional mutexes to allocate.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexget_increment.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_set_align">
+<!--#mutex_set_align#--><tt class="descname">mutex_set_align</tt><big>(</big><em>align</em><big>)</big><a class="headerlink" href="#mutex_set_align" title="Permalink to this definition">¶</a></dt>
+<dd>Set the mutex alignment, in bytes.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexset_align.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_get_align">
+<!--#mutex_get_align#--><tt class="descname">mutex_get_align</tt><big>(</big><big>)</big><a class="headerlink" href="#mutex_get_align" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the mutex alignment, in bytes.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexget_align.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_set_tas_spins">
+<!--#mutex_set_tas_spins#--><tt class="descname">mutex_set_tas_spins</tt><big>(</big><em>tas_spins</em><big>)</big><a class="headerlink" href="#mutex_set_tas_spins" title="Permalink to this definition">¶</a></dt>
+<dd>Specify that test-and-set mutexes should spin tas_spins times without
+blocking. Check the default values in the Oracle webpage.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexset_tas_spins.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="mutex_get_tas_spins">
+<!--#mutex_get_tas_spins#--><tt class="descname">mutex_get_tas_spins</tt><big>(</big><big>)</big><a class="headerlink" href="#mutex_get_tas_spins" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the test-and-set spin count.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/mutexget_tas_spins.html">More info...</a></dd></dl>
+
+</div>
+<div class="section">
+<h2 id="dbenv-replication-manager-methods">DBEnv Replication Manager Methods<a class="headerlink" href="#dbenv-replication-manager-methods" title="Permalink to this headline">¶</a></h2>
+<p>This module automates many of the tasks needed to provide replication
+abilities in a Berkeley DB system. The module is fairly limited, but
+enough in many cases. Users more demanding must use the <strong>full</strong> Base
+Replication API.</p>
+<p>This module requires pthread support (in Unix), so you must compile
+Berkeley DB with it if you want to be able to use the Replication
+Manager.</p>
+<dl class="function">
+<dt id="repmgr_start">
+<!--#repmgr_start#--><tt class="descname">repmgr_start</tt><big>(</big><em>nthreads</em>, <em>flags</em><big>)</big><a class="headerlink" href="#repmgr_start" title="Permalink to this definition">¶</a></dt>
+<dd>Starts the replication manager.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgrstart.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="repmgr_site">
+<!--#repmgr_site#--><tt class="descname">repmgr_site</tt><big>(</big><em>host</em>, <em>port</em><big>)</big><a class="headerlink" href="#repmgr_site" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a DB_SITE handle that defines a site&#8217;s host/port network
+address. You use the DB_SITE handle to configure and manage
+replication sites.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgr_site.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="repmgr_site_by_eid">
+<!--#repmgr_site_by_eid#--><tt class="descname">repmgr_site_by_eid</tt><big>(</big><em>eid</em><big>)</big><a class="headerlink" href="#repmgr_site_by_eid" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a DB_SITE handle based on the site&#8217;s Environment ID value.
+You use the DB_SITE handle to configure and manage replication sites.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgr_site_by_eid.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="repmgr_set_ack_policy">
+<!--#repmgr_set_ack_policy#--><tt class="descname">repmgr_set_ack_policy</tt><big>(</big><em>ack_policy</em><big>)</big><a class="headerlink" href="#repmgr_set_ack_policy" title="Permalink to this definition">¶</a></dt>
+<dd>Specifies how master and client sites will handle acknowledgment of
+replication messages which are necessary for &#8220;permanent&#8221; records.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgrset_ack_policy.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="repmgr_get_ack_policy">
+<!--#repmgr_get_ack_policy#--><tt class="descname">repmgr_get_ack_policy</tt><big>(</big><big>)</big><a class="headerlink" href="#repmgr_get_ack_policy" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the replication manager&#8217;s client acknowledgment policy.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgrget_ack_policy.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="repmgr_site_list">
+<!--#repmgr_site_list#--><tt class="descname">repmgr_site_list</tt><big>(</big><big>)</big><a class="headerlink" href="#repmgr_site_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary with the status of the sites currently known by
+the replication manager.</p>
+<p>The keys are the Environment ID assigned by the replication manager.
+This is the same value that is passed to the application&#8217;s event
+notification function for the DB_EVENT_REP_NEWMASTER event.</p>
+<p>The values are tuples containing the hostname, the TCP/IP port number
+and the link status.</p>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgrsite_list.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="repmgr_stat">
+<!--#repmgr_stat#--><tt class="descname">repmgr_stat</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#repmgr_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary with the replication manager statistics. Keys
+are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>perm_failed</td>
+<td>The number of times a message critical for
+maintaining database integrity (for example, a
+transaction commit), originating at this site,
+did not receive sufficient acknowledgement from
+clients, according to the configured
+acknowledgement policy and acknowledgement
+timeout.</td>
+</tr>
+<tr><td>msgs_queued</td>
+<td>The number of outgoing messages which could not
+be transmitted immediately, due to a full
+network buffer, and had to be queued for later
+delivery.</td>
+</tr>
+<tr><td>msgs_dropped</td>
+<td>The number of outgoing messages that were
+completely dropped, because the outgoing
+message queue was full. (Berkeley DB
+replication is tolerant of dropped messages,
+and will automatically request retransmission
+of any missing messages as needed.)</td>
+</tr>
+<tr><td>connection_drop</td>
+<td>The number of times an existing TCP/IP
+connection failed.</td>
+</tr>
+<tr><td>connect_fail</td>
+<td>The number of times an attempt to open a new
+TCP/IP connection failed.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgrstat.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="repmgr_stat_print">
+<!--#repmgr_stat_print#--><tt class="descname">repmgr_stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#repmgr_stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays the replication manager statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmgrstat_print.html">More info...</a></dd></dl>
+
+</div>
+<div class="section">
+<h2 id="dbenv-replication-methods">DBEnv Replication Methods<a class="headerlink" href="#dbenv-replication-methods" title="Permalink to this headline">¶</a></h2>
+<p>This section provides the raw methods for replication. If possible,
+it is recommended to use the Replication Manager.</p>
+<dl class="function">
+<dt id="rep_elect">
+<!--#rep_elect#--><tt class="descname">rep_elect</tt><big>(</big><em>nsites</em>, <em>nvotes</em><big>)</big><a class="headerlink" href="#rep_elect" title="Permalink to this definition">¶</a></dt>
+<dd>Holds an election for the master of a replication group.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repelect.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_transport">
+<!--#rep_set_transport#--><tt class="descname">rep_set_transport</tt><big>(</big><em>envid</em>, <em>transportFunc</em><big>)</big><a class="headerlink" href="#rep_set_transport" title="Permalink to this definition">¶</a></dt>
+<dd>Initializes the communication infrastructure for a database
+environment participating in a replicated application.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/reptransport.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_process_messsage">
+<!--#rep_process_messsage#--><tt class="descname">rep_process_messsage</tt><big>(</big><em>control</em>, <em>rec</em>, <em>envid</em><big>)</big><a class="headerlink" href="#rep_process_messsage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes an incoming replication message sent by a member of the
+replication group to the local database environment.</p>
+<p>Returns a two element tuple.</p>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repmessage.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rep_start">
+<!--#rep_start#--><tt class="descname">rep_start</tt><big>(</big><em>flags</em>, <em>cdata=None</em><big>)</big><a class="headerlink" href="#rep_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configures the database environment as a client or master in a group
+of replicated database environments.</p>
+<p>The DB_ENV-&gt;rep_start method is not called by most replication
+applications. It should only be called by applications implementing
+their own network transport layer, explicitly holding replication
+group elections and handling replication messages outside of the
+replication manager framework.</p>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repstart.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rep_sync">
+<!--#rep_sync#--><tt class="descname">rep_sync</tt><big>(</big><big>)</big><a class="headerlink" href="#rep_sync" title="Permalink to this definition">¶</a></dt>
+<dd>Forces master synchronization to begin for this client. This method
+is the other half of setting the DB_REP_CONF_DELAYCLIENT flag via the
+DB_ENV-&gt;rep_set_config method.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repsync.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_config">
+<!--#rep_set_config#--><tt class="descname">rep_set_config</tt><big>(</big><em>which</em>, <em>onoff</em><big>)</big><a class="headerlink" href="#rep_set_config" title="Permalink to this definition">¶</a></dt>
+<dd>Configures the Berkeley DB replication subsystem.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repconfig.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_get_config">
+<!--#rep_get_config#--><tt class="descname">rep_get_config</tt><big>(</big><em>which</em><big>)</big><a class="headerlink" href="#rep_get_config" title="Permalink to this definition">¶</a></dt>
+<dd>Returns whether the specified which parameter is currently set or
+not.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repget_config.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_limit">
+<!--#rep_set_limit#--><tt class="descname">rep_set_limit</tt><big>(</big><em>bytes</em><big>)</big><a class="headerlink" href="#rep_set_limit" title="Permalink to this definition">¶</a></dt>
+<dd>Sets a byte-count limit on the amount of data that will be
+transmitted from a site in response to a single message processed by
+the DB_ENV-&gt;rep_process_message method. The limit is not a hard
+limit, and the record that exceeds the limit is the last record to be
+sent.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repset_limit.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_get_limit">
+<!--#rep_get_limit#--><tt class="descname">rep_get_limit</tt><big>(</big><big>)</big><a class="headerlink" href="#rep_get_limit" title="Permalink to this definition">¶</a></dt>
+<dd>Gets a byte-count limit on the amount of data that will be
+transmitted from a site in response to a single message processed by
+the DB_ENV-&gt;rep_process_message method. The limit is not a hard
+limit, and the record that exceeds the limit is the last record to be
+sent.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repget_limit.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_request">
+<!--#rep_set_request#--><tt class="descname">rep_set_request</tt><big>(</big><em>minimum</em>, <em>maximum</em><big>)</big><a class="headerlink" href="#rep_set_request" title="Permalink to this definition">¶</a></dt>
+<dd>Sets a threshold for the minimum and maximum time that a client
+waits before requesting retransmission of a missing message.
+Specifically, if the client detects a gap in the sequence of incoming
+log records or database pages, Berkeley DB will wait for at least min
+microseconds before requesting retransmission of the missing record.
+Berkeley DB will double that amount before requesting the same
+missing record again, and so on, up to a maximum threshold of max
+microseconds.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repset_request.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_get_request">
+<!--#rep_get_request#--><tt class="descname">rep_get_request</tt><big>(</big><big>)</big><a class="headerlink" href="#rep_get_request" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a tuple with the minimum and maximum number of microseconds a
+client waits before requesting retransmission.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repget_request.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_nsites">
+<!--#rep_set_nsites#--><tt class="descname">rep_set_nsites</tt><big>(</big><em>nsites</em><big>)</big><a class="headerlink" href="#rep_set_nsites" title="Permalink to this definition">¶</a></dt>
+<dd>Specifies the total number of sites in a replication group.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repnsites.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_get_nsites">
+<!--#rep_get_nsites#--><tt class="descname">rep_get_nsites</tt><big>(</big><big>)</big><a class="headerlink" href="#rep_get_nsites" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the total number of sites in the replication group.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repget_nsites.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_priority">
+<!--#rep_set_priority#--><tt class="descname">rep_set_priority</tt><big>(</big><em>priority</em><big>)</big><a class="headerlink" href="#rep_set_priority" title="Permalink to this definition">¶</a></dt>
+<dd>Specifies the database environment&#8217;s priority in replication group
+elections. The priority must be a positive integer, or 0 if this
+environment cannot be a replication group master.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/reppriority.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_get_priority">
+<!--#rep_get_priority#--><tt class="descname">rep_get_priority</tt><big>(</big><big>)</big><a class="headerlink" href="#rep_get_priority" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the database environment priority.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repget_priority.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_timeout">
+<!--#rep_set_timeout#--><tt class="descname">rep_set_timeout</tt><big>(</big><em>which</em>, <em>timeout</em><big>)</big><a class="headerlink" href="#rep_set_timeout" title="Permalink to this definition">¶</a></dt>
+<dd>Specifies a variety of replication timeout values.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repset_timeout.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_get_timeout">
+<!--#rep_get_timeout#--><tt class="descname">rep_get_timeout</tt><big>(</big><em>which</em><big>)</big><a class="headerlink" href="#rep_get_timeout" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the timeout value for the specified <em>which</em> parameter.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repget_timeout.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_set_clockskew">
+<!--#rep_set_clockskew#--><tt class="descname">rep_set_clockskew</tt><big>(</big><em>fast</em>, <em>slow</em><big>)</big><a class="headerlink" href="#rep_set_clockskew" title="Permalink to this definition">¶</a></dt>
+<dd>Sets the clock skew ratio among replication group members based on
+the fastest and slowest measurements among the group for use with
+master leases.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repclockskew.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_get_clockskew">
+<!--#rep_get_clockskew#--><tt class="descname">rep_get_clockskew</tt><big>(</big><big>)</big><a class="headerlink" href="#rep_get_clockskew" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a tuple with the current clock skew values.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repget_clockskew.html">More info...</a></dd></dl>
+
+<dl class="function">
+<dt id="rep_stat">
+<!--#rep_stat#--><tt class="descname">rep_stat</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#rep_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary with the replication subsystem statistics. Keys
+are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>st_bulk_fills</td>
+<td>The number of times the bulk buffer filled
+up, forcing the buffer content to be sent.</td>
+</tr>
+<tr><td>bulk_overflows</td>
+<td>The number of times a record was bigger
+than the entire bulk buffer, and therefore
+had to be sent as a singleton.</td>
+</tr>
+<tr><td>bulk_records</td>
+<td>The number of records added to a bulk
+buffer.</td>
+</tr>
+<tr><td>bulk_transfers</td>
+<td>The number of bulk buffers transferred (via
+a call to the application&#8217;s send function).</td>
+</tr>
+<tr><td>client_rerequests</td>
+<td>The number of times this client site
+received a &#8220;re-request&#8221; message, indicating
+that a request it previously sent to
+another client could not be serviced by
+that client. (Compare to client_svc_miss.)</td>
+</tr>
+<tr><td>client_svc_miss</td>
+<td>The number of &#8220;request&#8221; type messages
+received by this client that could not be
+processed, forcing the originating
+requester to try sending the request to the
+master (or another client).</td>
+</tr>
+<tr><td>client_svc_req</td>
+<td>The number of &#8220;request&#8221; type messages
+received by this client. (&#8220;Request&#8221;
+messages are usually sent from a client to
+the master, but a message marked with the
+DB_REP_ANYWHERE flag in the invocation of
+the application&#8217;s send function may be sent
+to another client instead.)</td>
+</tr>
+<tr><td>dupmasters</td>
+<td>The number of duplicate master conditions
+originally detected at this site.</td>
+</tr>
+<tr><td>egen</td>
+<td>The current election generation number.</td>
+</tr>
+<tr><td>election_cur_winner</td>
+<td>The election winner.</td>
+</tr>
+<tr><td>election_gen</td>
+<td>The election generation number.</td>
+</tr>
+<tr><td>election_lsn</td>
+<td>The maximum LSN of election winner.</td>
+</tr>
+<tr><td>election_nsites</td>
+<td>The number sites responding to this site
+during the last election.</td>
+</tr>
+<tr><td>election_nvotes</td>
+<td>The number of votes required in the last
+election.</td>
+</tr>
+<tr><td>election_priority</td>
+<td>The election priority.</td>
+</tr>
+<tr><td>election_sec</td>
+<td>The number of seconds the last election
+took (the total election time is
+election_sec plus election_usec).</td>
+</tr>
+<tr><td>election_status</td>
+<td>The current election phase (0 if no
+election is in progress).</td>
+</tr>
+<tr><td>election_tiebreaker</td>
+<td>The election tiebreaker value.</td>
+</tr>
+<tr><td>election_usec</td>
+<td>The number of microseconds the last
+election took (the total election time is
+election_sec plus election_usec).</td>
+</tr>
+<tr><td>election_votes</td>
+<td>The number of votes received in the last
+election.</td>
+</tr>
+<tr><td>elections</td>
+<td>The number of elections held.</td>
+</tr>
+<tr><td>elections_won</td>
+<td>The number of elections won.</td>
+</tr>
+<tr><td>env_id</td>
+<td>The current environment ID.</td>
+</tr>
+<tr><td>env_priority</td>
+<td>The current environment priority.</td>
+</tr>
+<tr><td>gen</td>
+<td>The current generation number.</td>
+</tr>
+<tr><td>log_duplicated</td>
+<td>The number of duplicate log records
+received.</td>
+</tr>
+<tr><td>log_queued</td>
+<td>The number of log records currently queued.</td>
+</tr>
+<tr><td>log_queued_max</td>
+<td>The maximum number of log records ever
+queued at once.</td>
+</tr>
+<tr><td>log_queued_total</td>
+<td>The total number of log records queued.</td>
+</tr>
+<tr><td>log_records</td>
+<td>The number of log records received and
+appended to the log.</td>
+</tr>
+<tr><td>log_requested</td>
+<td>The number of times log records were missed
+and requested.</td>
+</tr>
+<tr><td>master</td>
+<td>The current master environment ID.</td>
+</tr>
+<tr><td>master_changes</td>
+<td>The number of times the master has changed.</td>
+</tr>
+<tr><td>max_lease_sec</td>
+<td>The number of seconds of the longest lease
+(the total lease time is max_lease_sec plus
+max_lease_usec).</td>
+</tr>
+<tr><td>max_lease_usec</td>
+<td>The number of microseconds of the longest
+lease (the total lease time is
+max_lease_sec plus max_lease_usec).</td>
+</tr>
+<tr><td>max_perm_lsn</td>
+<td>The LSN of the maximum permanent log
+record, or 0 if there are no permanent log
+records.</td>
+</tr>
+<tr><td>msgs_badgen</td>
+<td>The number of messages received with a bad
+generation number.</td>
+</tr>
+<tr><td>msgs_processed</td>
+<td>The number of messages received and
+processed.</td>
+</tr>
+<tr><td>msgs_recover</td>
+<td>The number of messages ignored due to
+pending recovery.</td>
+</tr>
+<tr><td>msgs_send_failures</td>
+<td>The number of failed message sends.</td>
+</tr>
+<tr><td>msgs_sent</td>
+<td>The number of messages sent.</td>
+</tr>
+<tr><td>newsites</td>
+<td>The number of new site messages received.</td>
+</tr>
+<tr><td>next_lsn</td>
+<td>In replication environments configured as
+masters, the next LSN expected. In
+replication environments configured as
+clients, the next LSN to be used.</td>
+</tr>
+<tr><td>next_pg</td>
+<td>The next page number we expect to receive.</td>
+</tr>
+<tr><td>nsites</td>
+<td>The number of sites used in the last
+election.</td>
+</tr>
+<tr><td>nthrottles</td>
+<td>Transmission limited. This indicates the
+number of times that data transmission was
+stopped to limit the amount of data sent in
+response to a single call to
+DB_ENV-&gt;rep_process_message.</td>
+</tr>
+<tr><td>outdated</td>
+<td>The number of outdated conditions detected.</td>
+</tr>
+<tr><td>pg_duplicated</td>
+<td>The number of duplicate pages received.</td>
+</tr>
+<tr><td>pg_records</td>
+<td>The number of pages received and stored.</td>
+</tr>
+<tr><td>pg_requested</td>
+<td>The number of pages missed and requested
+from the master.</td>
+</tr>
+<tr><td>startsync_delayed</td>
+<td>The number of times the client had to delay
+the start of a cache flush operation
+(initiated by the master for an impending
+checkpoint) because it was missing some
+previous log record(s).</td>
+</tr>
+<tr><td>startup_complete</td>
+<td>The client site has completed its startup
+procedures and is now handling live records
+from the master.</td>
+</tr>
+<tr><td>status</td>
+<td><dl class="first last docutils">
+<dt>The current replication mode. Set to</dt>
+<dd>DB_REP_MASTER if the environment is a
+replication master, DB_REP_CLIENT if the
+environment is a replication client, or 0
+if replication is not configured.</dd>
+</dl>
+</td>
+</tr>
+<tr><td>txns_applied</td>
+<td>The number of transactions applied.</td>
+</tr>
+<tr><td>waiting_lsn</td>
+<td>The LSN of the first log record we have
+after missing log records being waited for,
+or 0 if no log records are currently
+missing.</td>
+</tr>
+<tr><td>waiting_pg</td>
+<td>The page number of the first page we have
+after missing pages being waited for, or 0
+if no pages are currently missing.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repstat.html">More info...</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rep_stat_print">
+<!--#rep_stat_print#--><tt class="descname">rep_stat_print</tt><big>(</big><em>flags=0</em><big>)</big><a class="headerlink" href="#rep_stat_print" title="Permalink to this definition">¶</a></dt>
+<dd>Displays the replication subsystem statistical information.
+<a class="reference" href="http://download.oracle.com/docs/cd/E17076_02/html/api_reference/C/repstat_print.html">More info...</a></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="sidebarwrapper">
+          
+            <h3>Table Of Contents</h3>
+            <ul>
+<li><a class="reference" href="">DBEnv</a><ul>
+<li><a class="reference" href="#dbenv-attributes">DBEnv Attributes</a></li>
+<li><a class="reference" href="#dbenv-methods">DBEnv Methods</a></li>
+<li><a class="reference" href="#dbenv-replication-manager-methods">DBEnv Replication Manager Methods</a></li>
+<li><a class="reference" href="#dbenv-replication-methods">DBEnv Replication Methods</a></li>
+</ul>
+</li>
+</ul>
+
+          
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="introduction.html" title="previous chapter">Berkeley DB 4.x/5.x Python Extension Package</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="db.html" title="next chapter">DB</a></p>
+          
+          
+          
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px"><a href="genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right"><a href="modindex.html" title="Global Module Index" accesskey="M">modules</a> |</li>
+          <li class="right"><a href="db.html" title="DB" accesskey="N">next</a> |</li>
+          <li class="right"><a href="introduction.html" title="Berkeley DB 4.x/5.x Python Extension Package" accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyBSDDB v5.2.0 documentation</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2008-2011 Jesus Cea Avion.
+      Last updated on Jul 12, 2011.
+    </div>
+  </body>
+</html>
