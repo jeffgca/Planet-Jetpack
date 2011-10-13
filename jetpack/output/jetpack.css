@@ -4,6 +4,12 @@ h3 {
     border: none;
 }
 
+body {
+    border-right: none;
+    margin-right: 0px;
+}
+
+
 body * {
     font-family: 'Open Sans',Arial,sans-serif;
 }
@@ -11,6 +17,10 @@ body * {
 div.entrygroup {
     background-color: #efefef;
     padding: 8px;
+}
+
+div.sidebar {
+    position: relative;
 }
 
 
