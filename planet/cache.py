@@ -80,7 +80,7 @@ class CachedInfo:
 
         keys = []
         for key in self.keys():
-            cache_key = self.cache_key(key)
+            cache_key = str(self.cache_key(key))
             if not self._cached[key]:
                 if self._cache.has_key(cache_key):
                     # Non-cached keys need to be cleared
@@ -88,8 +88,8 @@ class CachedInfo:
                     del(self._cache[cache_key + " type"])
                 continue
 
-            keys.append(key)
-            self._cache[cache_key] = self._value[key]
+            keys.append(str(key))
+            self._cache[cache_key] = str(self._value[key])
             self._cache[cache_key + " type"] = self._type[key]
 
         if self._root:
