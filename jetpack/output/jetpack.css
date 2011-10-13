@@ -1,0 +1,16 @@
+
+h3 {
+    background-color: inherit;
+    border: none;
+}
+
+body * {
+    font-family: 'Open Sans',Arial,sans-serif;
+}
+
+div.entrygroup {
+    background-color: #efefef;
+    padding: 8px;
+}
+
+
